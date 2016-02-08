@@ -41,9 +41,9 @@ public class TestLoginPage {
         driver.findElement(loginPage.getSubmit()).click();
         WebElement waiting = (new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(firstPage.getToolBar14()));
         driver.findElement(firstPage.getToolBar14()).click();
-        //waiting = (new WebDriverWait(driver,10)).until(ExpectedConditions.visibilityOfElementLocated(adminPage.getAgentGridRow()));
-//        driver.findElement(adminPage.getAgentGridRow()).click();
-        //waiting = (new WebDriverWait(driver,20)).until(ExpectedConditions.presenceOfElementLocated(adminPage.getViewAgent()));
+        waiting = (new WebDriverWait(driver,10)).until(ExpectedConditions.visibilityOfElementLocated(adminPage.getAgentGridRow()));
+        driver.findElement(adminPage.getAgentGridRow()).click();
+        waiting = (new WebDriverWait(driver,20)).until(ExpectedConditions.presenceOfElementLocated(adminPage.getViewAgent()));
         waiting = (new WebDriverWait(driver,20)).until(ExpectedConditions.presenceOfElementLocated(adminPage.viewAgent));
         driver.findElement(adminPage.getViewAgent()).click();
         waiting = (new WebDriverWait(driver,20)).until(ExpectedConditions.presenceOfElementLocated(adminPage.getNewMaid()));
