@@ -1,18 +1,12 @@
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.*;
-import org.testng.TestNG;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
 /**
  * Created by Nick on 07.02.2016.
@@ -41,8 +35,12 @@ public class TestLoginPage {
         driver.findElement(loginPage.getSubmit()).click();
         WebElement waiting = (new WebDriverWait(driver,10)).until(ExpectedConditions.presenceOfElementLocated(firstPage.getToolBar14()));
         driver.findElement(firstPage.getToolBar14()).click();
+        //свичаюсь внутрь фрейма
+        driver.switchTo().frame(driver.findElement(By.id("AgentsEditPopupPage_CIF-1")));
         waiting = (new WebDriverWait(driver,10)).until(ExpectedConditions.visibilityOfElementLocated(adminPage.getAgentGridRow()));
         driver.findElement(adminPage.getAgentGridRow()).click();
+        //возвращаюсь в родительский фрейм, тут это не надо вроде, дальше работа идёт всё в том же фрейме, просто всвтавишь, где тебе надо
+        driver.switchTo().parentFrame();
         waiting = (new WebDriverWait(driver,20)).until(ExpectedConditions.presenceOfElementLocated(adminPage.getViewAgent()));
         waiting = (new WebDriverWait(driver,20)).until(ExpectedConditions.presenceOfElementLocated(adminPage.viewAgent));
         driver.findElement(adminPage.getViewAgent()).click();
